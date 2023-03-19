@@ -1,0 +1,58 @@
+{
+  "name": "az-keyvault",
+  "version": "1.0.0",
+  "description": "Preload Azure Key Vault secrets into the environment",
+  "keywords": [
+    "azure",
+    "azure-keyvault",
+    "keyvault",
+    "preload",
+    "env"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tgrassl/az-keyvault"
+  },
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./load": "./preload/loader.js",
+    "./load.js": "./preload/loader.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "preload"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --minify --clean",
+    "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
+    "lint": "eslint \"src/**/*.ts*\""
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "@azure/identity": "^3.1.3",
+    "@azure/keyvault-secrets": "^4.7.0",
+    "sync-rpc": "^1.3.6"
+  },
+  "devDependencies": {
+    "@tsconfig/node-lts": "^18.12.1",
+    "@types/node": "^18.15.3",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
+    "eslint": "^8.36.0",
+    "prettier": "^2.8.4",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.2"
+  }
+}
