@@ -19,7 +19,9 @@ export async function getSecrets(): Promise<Secrets> {
   for await (const secretProperties of client.listPropertiesOfSecrets()) {
     const secret = await client.getSecret(secretProperties.name);
     if (secret.value) {
-      secrets[secret.name] = secret.value;
+      // convert azure format to correct env format
+      const cleanSecret = secret.name.replaceAll('-', '_');
+      secrets[cleanSecret] = secret.value;
     }
   }
 
